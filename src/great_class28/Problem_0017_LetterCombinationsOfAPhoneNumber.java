@@ -21,10 +21,10 @@ public class Problem_0017_LetterCombinationsOfAPhoneNumber {
     };
 
     public List<String> letterCombinations(String digits) {
-        List<String> ans = new ArrayList<>();
-        if (digits == null || digits.length() == 0) {
-            return null;
+        if (digits == null || digits.length() == 0){
+            return new ArrayList<>();
         }
+        List<String> ans = new ArrayList<>();
         char[] str = digits.toCharArray();
         char[] path = new char[str.length];
         process(str, 0, path, ans);
