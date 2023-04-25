@@ -1,4 +1,4 @@
-package great_classes07;
+package great_class07;
 
 /**
  * Created by likz on 2023/4/24
