@@ -33,18 +33,18 @@ public class LargestRectangleInHistogram {
         }
         int maxArea = Integer.MIN_VALUE;
         int[] stack = new int[heights.length];
-        int size = -1;
+        int index = -1;
         for (int i = 0; i < heights.length; i++){
-            while(size >= 0 && heights[i] <= heights[stack[size]]){
-                int j = stack[size--];
-                int k = size == -1 ? -1 : stack[size];
+            while(index >= 0 && heights[i] <= heights[stack[index]]){
+                int j = stack[index--];
+                int k = index == -1 ? -1 : stack[index];
                 maxArea = Math.max(maxArea, (i - k - 1) * heights[j]);
             }
-            stack[++size] = i;
+            stack[++index] = i;
         }
-        while(size >= 0 ){
-            int j = stack[size--];
-            int k = size == -1 ? -1 : stack[size];
+        while(index >= 0 ){
+            int j = stack[index--];
+            int k = index == -1 ? -1 : stack[index];
             maxArea = Math.max(maxArea, (heights.length - k - 1) * heights[j]);
         }
         return maxArea;
