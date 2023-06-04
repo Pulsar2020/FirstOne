@@ -14,8 +14,15 @@ public class Problem_0139_WordBreak {
     }
 
     public boolean wordBreak(String s, List<String> wordDict) {
+        Node root = getTrie(wordDict);
+        char[] str = s.toCharArray();
+        boolean[] dp = getDp(root, str);
+        return dp[0];
+    }
+
+    public Node getTrie(List<String> wordList) {
         Node root = new Node();
-        for (String word : wordDict) {
+        for (String word : wordList) {
             char[] wordChars = word.toCharArray();
             Node node = root;
             int index;
@@ -28,8 +35,11 @@ public class Problem_0139_WordBreak {
             }
             node.end = true;
         }
-        int N = s.length();
-        char[] str = s.toCharArray();
+        return root;
+    }
+
+    public boolean[] getDp(Node root, char[] str) {
+        int N = str.length;
         boolean[] dp = new boolean[N + 1];
         dp[N] = true;
         for (int i = N - 1; i >= 0; i--) {
@@ -47,6 +57,6 @@ public class Problem_0139_WordBreak {
                 }
             }
         }
-        return dp[0];
+        return dp;
     }
 }
