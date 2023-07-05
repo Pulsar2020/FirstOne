@@ -10,14 +10,14 @@ import java.util.List;
  */
 public class Problem_0017_LetterCombinationsOfAPhoneNumber {
     public static char[][] phone = new char[][]{
-            {'a', 'b', 'c'}, // 2    0
-            {'d', 'e', 'f'}, // 3    1
-            {'g', 'h', 'i'}, // 4    2
-            {'j', 'k', 'l'}, // 5    3
-            {'m', 'n', 'o'}, // 6
-            {'p', 'q', 'r', 's'}, // 7
-            {'t', 'u', 'v'},   // 8
-            {'w', 'x', 'y', 'z'}, // 9
+            {'a', 'b', 'c'},
+            {'d', 'e', 'f'},
+            {'g', 'h', 'i'},
+            {'j', 'k', 'l'},
+            {'m', 'n', 'o'},
+            {'p', 'q', 'r', 's'},
+            {'t', 'u', 'v'},
+            {'w', 'x', 'y', 'z'},
     };
 
     public List<String> letterCombinations(String digits) {
@@ -26,19 +26,21 @@ public class Problem_0017_LetterCombinationsOfAPhoneNumber {
         }
         List<String> ans = new ArrayList<>();
         char[] str = digits.toCharArray();
+        // 保存结果字符串
         char[] path = new char[str.length];
-        process(str, 0, path, ans);
+        // dfs
+        dfs(str, 0, path, ans);
         return ans;
     }
 
-    public static void process(char[] str, int index, char[] path, List<String> ans) {
+    public static void dfs(char[] str, int index, char[] path, List<String> ans) {
         if (str.length == index){
             ans.add(String.valueOf(path));
         } else {
             char[] phoneStr = phone[str[index] - '2'];
             for (char e : phoneStr){
                 path[index] = e;
-                process(str, index + 1, path, ans);
+                dfs(str, index + 1, path, ans);
             }
         }
     }

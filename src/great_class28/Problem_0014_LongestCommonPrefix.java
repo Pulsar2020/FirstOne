@@ -10,15 +10,15 @@ public class Problem_0014_LongestCommonPrefix {
         if (strs == null || strs.length == 0) {
             return "";
         }
-        String str0 = strs[0];
+        char[] str0 = strs[0].toCharArray();
         if(str0.equals("")){
             return "";
         }
-        int index = str0.length();
+        int index = str0.length;
         for (int i = 1; i < strs.length; i++) {
-            String str = strs[i];
+            char[] str = strs[i].toCharArray();
             int pos = 0;
-            while(pos < str.length() && pos < str0.length()  && pos <= index && str.charAt(pos) == str0.charAt(pos)){
+            while(pos < str.length && pos < str0.length  && pos <= index && str[pos] == str0[pos]){
                 pos++;
             }
             if (pos == 0 ){
@@ -26,7 +26,10 @@ public class Problem_0014_LongestCommonPrefix {
             }
             index = Math.min(pos, index);
         }
-        String ans = str0.substring(0, index);
-        return ans;
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < index; i++) {
+            res.append(str0[i]);
+        }
+        return res.toString();
     }
 }
